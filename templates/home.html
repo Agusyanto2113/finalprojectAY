@@ -1,0 +1,315 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HolidayGoTravel</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/media.css' %}">
+</head>
+<body class="show-chatbot">
+<!--End header Design-->    
+    <header>
+        <nav>
+            <h4>Holiday Go Travel</h4>
+            <ul id="menu_bx">
+                <li><a href="">Discover</a></li>
+                <li><a href="">Community</a></li>
+                <li><a href="">Special Deals</a></li>
+                <li><a href="">About Us</a></li>
+                <li><a href="">Register</a></li>
+            </ul>
+            
+            <i class="bi bi-three-dots"></i>
+        </nav>
+
+
+
+        <div class="content">
+            <div class="cont_bx">
+                <h1>The Right Destination for you and you family</h1>
+                <p>Creative taglines have the capability of capturing the attention of potential customer.</p>
+                <button>Start your search</button>
+            </div>
+            <div class="trip_bx">
+                <div class="search_bx">
+                    <div class="card">
+                        <h4>Location <i class="bi bi-caret-down-fill"></i></h4>
+                        <input type="text" name="" id="" placeholder="Enter your destination">
+                    </div>
+                    <div class="card">
+                        <h4>Date <i class="bi bi-caret-down-fill"></i></h4>
+                        <input type="date">
+                    </div>
+                    <div class="card">
+                        <h4>People <i class="bi bi-caret-down-fill"></i></h4>
+                        <input type="number" placeholder="How many people">
+                    </div>
+                    <input type="button" value="Explore Now">
+                </div>
+                <div class="travel_bx">
+                    <h4>Countries to travel</h4>
+                    <div class="cards">
+                        <div class="card">
+                            <h3>INDIA <img src="{% static 'images/icons/india.png'%}" alt=""></h3>
+                            <img src="{% static 'images/items/mumbai-india-at-night.jpg' %}" alt="">
+                            <div class="btn_city">
+                                <a href="">Read Now</a>
+                                <h5>Mumbai Central<br> <span>$460</span></h5>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <h3>UNITED STATE <img src="{% static 'images/icons/united-states.png'%}" alt=""></h3>
+                            <img src="{% static 'images/items/newyork.webp' %}" alt="">
+                            <div class="btn_city">
+                                <a href="">Read Now</a>
+                                <h5>NewYork<br> <span>$870</span></h5>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <h3>RUSSIA <img src="{% static 'images/icons/russia.png'%}" alt=""></h3>
+                            <img src="{% static 'images/items/sanpitersburg.jpg' %}" alt="">
+                            <div class="btn_city">
+                                <a href="">Read Now</a>
+                                <h5>Sanpitersburg<br> <span>$660</span></h5>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <h3>SPAIN <img src="{% static 'images/icons/spain.png'%}" alt=""></h3>
+                            <img src="{% static 'images/items/barcelona.jpg' %}" alt="">
+                            <div class="btn_city">
+                                <a href="">Read Now</a>
+                                <h5>Barcelona<br> <span>$739</span></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </header>
+<!--End header Design-->    
+<!--Chatbot Design-->    
+    <button class="chatbot-toggler">
+        <span class="material-symbols-outlined">contact_support</span>
+        <span class="material-symbols-outlined">close</span>
+    </button>
+    <div class="chatbot">
+        <div class="chat-header">
+            <h2>Chatbot</h2>
+            <span class="material-symbols-outlined">close</span>
+        </div>
+<!--
+        <ul class="chatbox">
+            
+            <li class="chat incoming">
+                <span class="material-symbols-outlined">smart_toy</span>
+                <p>Hi there <br> How can i help you?</p>
+            </li>
+            <li class="chat outgoing">
+                <p>Lorem ipsum dolor sit amet.</p>
+            </li>
+        </ul>
+-->
+
+        <ul class="chatbox">
+            <li class="chat incoming">
+                <span class="material-symbols-outlined">smart_toy</span>
+                <p>Hi there <br> How can i help you?</p>
+            </li>
+            {% for message in chat_history %}
+                <li class="chat {% if message.user == 'User' %}outgoing{% else %}incoming{% endif %}">
+                    {% if message.user != 'User' %}
+                        <span class="material-symbols-outlined">smart_toy</span>
+                    {% endif %}
+                    <p>{{ message.message }}</p>
+                </li>
+                {% if bot_response %}
+                <li class="chat outgoing">
+                    <p>{{ bot_response }}</p>
+                </li>
+                {% endif %}
+            {% endfor %}
+            
+        </ul>
+<!--
+        <div class="chat-input">
+            <div class="mic">
+                <span id="startButton" class="material-symbols-outlined">mic</span>
+            </div>
+            <div class="textarea">
+                <textarea name="" id="output" placeholder="Enter a message...." required></textarea>
+            </div>
+
+            <div class="sendbtn">
+                <span id="send-btn" class="material-symbols-outlined">send</span>
+            </div>
+        </div>
+-->
+        <div class="chat-input">
+            <form action="">
+                <button><span id="startButton" class="material-symbols-outlined">mic</span></button>
+                <textarea name="" id="output" placeholder="Enter a message...." required></textarea>
+                <button><span id="send-btn" class="material-symbols-outlined">send</span></button>
+            </form>
+        </div>
+
+
+
+
+    </div>
+<!--End Chatbot Design-->    
+
+    <div class="offers">
+        <h1>Best tour Package offers for you</h1>
+        <p>choose your next destination</p>
+        <div class="cards">
+            <div class="card">
+                <h3>Lotus-Dehli</h3>
+                <div class="img_text">
+                    <img src="{% static 'images/items/lotus_temple.jpg' %}" alt="">
+                    <h4>Included: Air ticket , Hotel , Breakfast , Tours , Airport Transfer</h4>                
+                </div>
+                <div class="cont_bx">
+                    <div class="price">
+                        <div class="heart_chat">
+                            <i class="bi bi-heart-fill"><span>86415</span></i>
+                            <i class="bi bi-chat-fill"><span>4586</span></i>
+                        </div>
+                        <div class="info_price">
+                            <a href="">More Info</a>
+                            <h4>$2548</h4>
+                        </div>
+                    </div>
+                    <div class="dayes">5 Days <br> India</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Burj Khalifa-DXB</h3>
+                <div class="img_text">
+                    <img src="{% static 'images/items/burjkhlifa.jpg' %}" alt="">
+                    <h4>Included: Air ticket , Hotel , Breakfast , Tours , Airport Transfer</h4>                
+                </div>
+                <div class="cont_bx">
+                    <div class="price">
+                        <div class="heart_chat">
+                            <i class="bi bi-heart-fill"><span>86415</span></i>
+                            <i class="bi bi-chat-fill"><span>4586</span></i>
+                        </div>
+                        <div class="info_price">
+                            <a href="">More Info</a>
+                            <h4>$2548</h4>
+                        </div>
+                    </div>
+                    <div class="dayes">5 Days <br> Dubai</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Piramids-Egypt</h3>
+                <div class="img_text">
+                    <img src="{% static 'images/items/piramids.jpg' %}" alt="">
+                    <h4>Included: Air ticket , Hotel , Breakfast , Tours , Airport Transfer</h4>                
+                </div>
+                <div class="cont_bx">
+                    <div class="price">
+                        <div class="heart_chat">
+                            <i class="bi bi-heart-fill"><span>86415</span></i>
+                            <i class="bi bi-chat-fill"><span>4586</span></i>
+                        </div>
+                        <div class="info_price">
+                            <a href="">More Info</a>
+                            <h4>$2548</h4>
+                        </div>
+                    </div>
+                    <div class="dayes">7 Days <br> Egypt</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Mountain-Vietnam</h3>
+                <div class="img_text">
+                    <img src="{% static 'images/items/mountain.jpg' %}" alt="">
+                    <h4>Included: Air ticket , Hotel , Breakfast , Tours , Airport Transfer</h4>                
+                </div>
+                <div class="cont_bx">
+                    <div class="price">
+                        <div class="heart_chat">
+                            <i class="bi bi-heart-fill"><span>86415</span></i>
+                            <i class="bi bi-chat-fill"><span>4586</span></i>
+                        </div>
+                        <div class="info_price">
+                            <a href="">More Info</a>
+                            <h4>$2548</h4>
+                        </div>
+                    </div>
+                    <div class="dayes">7 Days <br> Vietna</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="destination">
+        <div class="des_bx">
+            <h4>Our Destination</h4>
+            <p>choose your next Destination</p>
+            <li>India</li>
+            <li>Dubai</li>
+            <li>USA</li>
+            <li>Vietnam</li>
+            <li>Russia</li>
+            <li>Brazil</li>
+            <h6>Included: Air ticket, Hotel, Breakfast, Tours, Airport Transfer</h6>
+            <button>MORE INFO</button>
+        </div>
+        <div class="img_bx">
+            <img src="{% static 'images/items/Main_plan.png' %}" alt="">
+            <div class="msg">
+                <img src="{% static 'images/icons/round_india_flag.png' %}" alt="">
+                <div class="cont">
+                    <h4>India</h4>
+                    <div class="icon">
+                        <i class="bi bi-heart-fill"><span>86415</span></i>
+                        <i class="bi bi-chat-fill"><span>4586</span></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="msg">
+                <img src="{% static 'images/icons/united-states.png' %}" alt="">
+                <div class="cont">
+                    <h4>United State</h4>
+                    <div class="icon">
+                        <i class="bi bi-heart-fill"><span>86415</span></i>
+                        <i class="bi bi-chat-fill"><span>4586</span></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer>
+        <h2>Subscribe & <br> get special discount</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis odio quae temporibus ipsa incidunt error?</p>
+        <div class="input">
+            <input type="text" placeholder="Enter your Email Address">
+            <button>Subscribe</button>
+        </div>
+        <ul>
+            <li>7823 <br> <h6>Years of Serving the travel Industry</h6></li>
+            <li>6374 <br> <h6>Global <br> Patnership</h6></li>
+            <li>1496 <br> <h6>Industry Awards since 2023</h6></li>
+            <li>5658 <br> <h6>Subscribe</h6></li>
+
+        </ul>
+    </footer>
+    <script src="{% static 'js/app.js' %}"></script>
+</body>
+</html>
