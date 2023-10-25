@@ -49,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'holidaygotravel.urls'
@@ -132,10 +133,17 @@ STATIC_URL = 'static/'
 #STATICFILES_DIRS = os.path.join(BASE_DIR,'static'),
 #STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles_build','static')
 
-STATIC_ROOT = BASE_DIR /'static'
+#STATIC_ROOT = BASE_DIR /'static'
+#STATICFILES_DIRS = [
+#    'holidaygotravel/static',
+#]
+
+
 STATICFILES_DIRS = [
-    'holidaygotravel/static',
+    os.path.join(BASE_DIR, "static")
 ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 # Default primary key field type
@@ -150,4 +158,6 @@ GOOGLE_SPEECH_TO_TEXT_KEY_FILE = '/path/to/your-service-account-key.json'
 #Media Files Configurations
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR /'media'
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
