@@ -1,16 +1,16 @@
 from django.shortcuts import render
 import joblib
-import tensorflow as tf
-from tensorflow.keras.models import Model
-from tensorflow.keras.layers import Input, Embedding, LSTM, Dense
-from tensorflow.keras.preprocessing.text import Tokenizer
-from tensorflow.keras.preprocessing.sequence import pad_sequences
+#import tensorflow as tf
+#from tensorflow.keras.models import Model
+#from tensorflow.keras.layers import Input, Embedding, LSTM, Dense
+from keras.preprocessing.text import Tokenizer
+from keras.preprocessing.sequence import pad_sequences
 import numpy as np
 import os
-from hmmlearn import hmm
+#from hmmlearn import hmm
 from .models import ChatMessage
 from django.http import JsonResponse
-from tensorflow.keras.models import load_model
+from keras.models import load_model
 # Create your views here.
 
 
@@ -120,21 +120,21 @@ def chat_view(request):
         bot_response = generate_bot_response(user_message, model, tokenizer)
     return JsonResponse({'response':bot_response})
 
-def chatbot(user_message):
+#def chatbot(user_message):
     
-        user_input = user_message
+#        user_input = user_message
 
         # Load the trained HMM model (you should adapt the path to your serialized model)
-        model = hmm.MultinomialHMM(n_components=2)
-        model = joblib.load('hmm_model.pkl')
+#        model = hmm.MultinomialHMM(n_components=2)
+#        model = joblib.load('hmm_model.pkl')
 
         # Convert user input into a sequence of observations
-        test_sequence = np.array(list(map(ord, user_input))).reshape(-1, 1)
+#        test_sequence = np.array(list(map(ord, user_input))).reshape(-1, 1)
 
         # Determine the most likely intent using the HMM model
-        intent = model.predict(test_sequence)[0]
+#        intent = model.predict(test_sequence)[0]
 
         # Retrieve chatbot response from the database based on the intent
-        chatbot_response = ChatMessage.objects.filter(id=intent).first().chatbot_response
+#        chatbot_response = ChatMessage.objects.filter(id=intent).first().chatbot_response
 
-        return chatbot_response
+#        return chatbot_response

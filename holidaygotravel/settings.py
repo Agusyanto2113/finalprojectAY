@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-lo-oo1_8%#tbp08@shqe+p05-010!dj!-%r+a=pu*+rkeu2rw_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app','.now.sh','127.0.0.1','localhost']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -82,16 +82,16 @@ WSGI_APPLICATION = 'holidaygotravel.wsgi.application'
 #    }
 #}
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME':'railway',
-        'USER':'postgres',
-        'PASSWORD':'G6a533DdeaaEE222A*dgDAf6664-56+2',
-        'HOST':'roundhouse.proxy.rlwy.net',
-        'PORT':'30031',
-    }
-}
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME':'railway',
+#        'USER':'postgres',
+#        'PASSWORD':'G6a533DdeaaEE222A*dgDAf6664-56+2',
+#        'HOST':'roundhouse.proxy.rlwy.net',
+#        'PORT':'30031',
+#    }
+#}
 
 
 # Password validation
@@ -129,13 +129,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = os.path.join(BASE_DIR,'static'),
-STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles_build','static')
+#STATICFILES_DIRS = os.path.join(BASE_DIR,'static'),
+#STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles_build','static')
 
-#STATIC_ROOT = BASE_DIR /'static'
-#STATICFILES_DIRS = [
-#    'holidaygotravel/static',
-#]
+STATIC_ROOT = BASE_DIR /'static'
+STATICFILES_DIRS = [
+    'holidaygotravel/static',
+]
 
 
 # Default primary key field type
